@@ -17,7 +17,7 @@ export default {
 
         return httpClient(url).then(({ headers, json }) => ({
             data: json.map(item => { return { 'name': item.name, 'id': item._id } }),
-            total: parseInt(headers.get('x-total-count'), 10),
+            total: parseInt(headers.get('content-range').split('/').pop(), 10),
         }));
     },
 
