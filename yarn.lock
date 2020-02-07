@@ -8688,14 +8688,6 @@ ra-core@^3.2.0:
     recompose "~0.26.0"
     reselect "~3.0.0"
 
-ra-data-json-server@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/ra-data-json-server/-/ra-data-json-server-3.2.0.tgz#c2a9b0dccc874d10b307d4956d5162469d3b214f"
-  integrity sha512-lEKUSAq43QuCZRNn3ge4g2zvC/9xMbdOHcOl0dNQ93bijEokVjNFZwsMZIVFJ6SK5+bvYc7H94mDccRdppygTw==
-  dependencies:
-    query-string "^5.1.1"
-    ra-core "^3.2.0"
-
 ra-i18n-polyglot@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ra-i18n-polyglot/-/ra-i18n-polyglot-3.2.0.tgz#cb76f71d42cb68a27d2587f501e45bbb1efb290d"

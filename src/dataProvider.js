@@ -16,22 +16,26 @@ export default {
         const url = `${apiUrl}/${resource}?${stringify(query)}`;
 
         return httpClient(url).then(({ headers, json }) => ({
-            data: json.map(item => { return { 'name': item.name, 'id': item._id } }),
+            data: json.map(item => { return { ...item, 'id': item._id } }),
             total: parseInt(headers.get('content-range').split('/').pop(), 10),
         }));
     },
 
     getOne: (resource, params) =>
-        httpClient(`${apiUrl}/${resource}/${params.id}`).then(({ json }) => ({
-            data: json,
-        })),
+        httpClient(`${apiUrl}/${resource}/${params.id}`).then(({ json }) => {
+            return ({
+                data: { ...json, 'id': json._id },
+            });
+        }),
 
     getMany: (resource, params) => {
         const query = {
             filter: JSON.stringify({ id: params.ids }),
         };
         const url = `${apiUrl}/${resource}?${stringify(query)}`;
-        return httpClient(url).then(({ json }) => ({ data: json }));
+        return httpClient(url).then(({ json }) => {
+            return ({ data: json })
+        });
     },
 
     getManyReference: (resource, params) => {
