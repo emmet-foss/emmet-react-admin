@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     List, Datagrid, TextField, EditButton,
-    SimpleForm, Edit, TextInput
+    SimpleForm, Edit, TextInput, ReferenceField
 } from 'react-admin';
 
 export const MemberList = props => (
@@ -11,6 +11,9 @@ export const MemberList = props => (
             <TextField source="lastName" />
             <TextField source="firstName" />
             <TextField source="churchId" />
+            <ReferenceField source="localeChurchId" reference="locale_churches">
+                <TextField source="name" />
+            </ReferenceField>
             <EditButton />
         </Datagrid>
     </List>

@@ -6,6 +6,7 @@ const httpClient = fetchUtils.fetchJson;
 
 export default {
     getList: (resource, params) => {
+        console.log('getList')
         const { page, perPage } = params.pagination;
         const { field, order } = params.sort;
         const query = {
@@ -29,12 +30,15 @@ export default {
         }),
 
     getMany: (resource, params) => {
+        console.log('getMany')
         const query = {
             filter: JSON.stringify({ id: params.ids }),
         };
         const url = `${apiUrl}/${resource}?${stringify(query)}`;
         return httpClient(url).then(({ json }) => {
-            return ({ data: json })
+            return ({
+                data: json.map(item => { return { ...item, 'id': item._id } })
+            })
         });
     },
 
