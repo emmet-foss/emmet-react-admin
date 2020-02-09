@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     List, Datagrid, TextField, EditButton,
-    SimpleForm, Edit, TextInput, ReferenceField
+    SimpleForm, Edit, TextInput, ReferenceField, ReferenceInput, SelectInput, required
 } from 'react-admin';
 
 export const MemberList = props => (
@@ -26,6 +26,14 @@ export const MemberEdit = props => (
             <TextInput source="lastName" />
             <TextInput source="firstName" />
             <TextInput source="churchId" />
+            <ReferenceInput
+              label="Locale Church"
+              source="localeChurchId"
+              reference="locale_churches"
+              validate={[required()]}
+            >
+                <SelectInput optionText="name" />
+            </ReferenceInput>
         </SimpleForm>
     </Edit>
 );
