@@ -1,12 +1,22 @@
 import React from 'react';
 import {
     List, Datagrid, TextField, EditButton,
-    SimpleForm, Edit, TextInput, ReferenceField, ReferenceInput, SelectInput, required
+    SimpleForm, Edit, TextInput, ReferenceField, ReferenceInput, SelectInput, required,
+    Create, Filter
 } from 'react-admin';
 
+const MembersFilter = (props) => (
+  <Filter {...props}>
+      <TextInput label="Search" source="lastName" alwaysOn />
+      <ReferenceInput label="Member" source="id" reference="members" allowEmpty>
+          <SelectInput optionText="name" />
+      </ReferenceInput>
+  </Filter>
+);
+
 export const MemberList = props => (
-    <List {...props}>
-        <Datagrid rowClick="edit">
+    <List filters={<MembersFilter />} {...props}>
+        <Datagrid>
             <TextField source="id" />
             <TextField source="lastName" />
             <TextField source="firstName" />
@@ -25,6 +35,7 @@ export const MemberEdit = props => (
             <TextInput disabled source="id" />
             <TextInput source="lastName" />
             <TextInput source="firstName" />
+            <TextInput source="email" />
             <TextInput source="churchId" />
             <ReferenceInput
               label="Locale Church"
@@ -36,4 +47,23 @@ export const MemberEdit = props => (
             </ReferenceInput>
         </SimpleForm>
     </Edit>
+);
+
+export const MemberCreate = props => (
+  <Create {...props}>
+      <SimpleForm>
+          <TextInput source="lastName" />
+          <TextInput source="firstName" />
+          <TextInput source="email" />
+          <TextInput source="churchId" />
+          <ReferenceInput
+            label="Locale Church"
+            source="localeChurchId"
+            reference="locale_churches"
+            validate={[required()]}
+          >
+              <SelectInput optionText="name" />
+          </ReferenceInput>
+      </SimpleForm>
+  </Create>
 );

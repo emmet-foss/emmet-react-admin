@@ -2,7 +2,7 @@
 import React from 'react';
 import { Admin, Resource } from 'react-admin';
 import dataProvider from './dataProvider';
-import { MemberList, MemberEdit } from './components/members';
+import { MemberList, MemberEdit, MemberCreate } from './components/members';
 import { LocaleChurchesList, LocaleChurchShow } from './components/locale_churches';
 
 const App = () => (
@@ -11,6 +11,7 @@ const App = () => (
       name="members"
       list={MemberList}
       edit={MemberEdit}
+      create={MemberCreate}
     />
     <Resource
       name="locale_churches"
